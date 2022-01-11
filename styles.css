@@ -1,0 +1,43 @@
+
+
+.main {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero {
+    padding: 50px;
+    font-size: 50px;
+    font-weight: 100;
+    text-align: center;
+}
+
+
+
+table {
+    text-align: center;
+}
+
+.modal-active {
+    display: none;
+    background-color: aquamarine;
+    z-index: 1;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: scale(1%);
+    transition: all 1s;
+}
+
+.active {
+    transform: scale(100%);
+}
+
+.form-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+}
