@@ -17,8 +17,7 @@ body {
     font-size: 50px;
     font-weight: 100;
     text-align: center;
-    background-color: rosybrown;
-    background-image: linear-gradient(to right, rgb(0, 97, 177), rgb(32, 179, 130));
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .add-button {
@@ -40,6 +39,8 @@ body {
     box-shadow: 0 5px 10px black;
     text-shadow: 0 0 1px white;
     cursor: pointer;
+    background-image: linear-gradient(45deg, rgb(0, 97, 177), rgb(32, 179, 130));
+
 }
 
 table {
@@ -48,21 +49,24 @@ table {
     width: 60%;
     table-layout: fixed;
     border-collapse: collapse;
-    color: white;
+    color: rgba(255, 255, 255, 0.6);
     font-weight: 100;
     font-size: 16px;
 }
 
 tr {
     border-bottom: solid thin rgba(255, 255, 255, 0.2);
+    text-align: center;
 }
 
 thead tr {
     border-bottom: solid thick rgb(32, 179, 130);
+    color: white;
 }
 
 td {
-    padding: 20px;   
+    padding: 20px;  
+    margin: 0 auto;
   }
   
 .modal-active {
@@ -89,13 +93,23 @@ td {
     align-items: center;
 }
 
-.delete-btn {
-    background-color: rgb(255,0,0,0.5);
-    width: 50px;
+.delete-btn, .read-btn {
+    border: 3px solid rgba(255, 0, 0, 0.61);
+    width: 45px;
     height: 36px;
-    margin-left: 30px;
-    border-radius: 12px;
+    margin: 0 auto;
+    border-radius: 15px;
     color: rgba(255, 255, 255, 0.6);
     font-size: 24px;
     cursor: pointer;
+}
+
+.read-btn.read {
+    color: rgba(172, 255, 47, 0.795);
+    border-color: rgba(172, 255, 47, 0.795);
+    font-size: 28px;
+}
+
+.read-btn.unread {
+    color: rgba(255, 0, 0, 0.61);
 }

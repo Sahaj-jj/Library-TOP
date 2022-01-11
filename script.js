@@ -22,7 +22,7 @@ function updateTable() {
         
         tr.appendChild(addData(document.createElement('div'), book.name));
         tr.appendChild(addData(document.createElement('div'), book.author));
-        tr.appendChild(addData(document.createElement('div'), book.isRead ? "\uD83D\uDDF8" : "\u2716", 'read-btn'));
+        tr.appendChild(addData(document.createElement('div'), book.isRead ? "\uD83D\uDDF8" : "\u2716", 'read-btn', book.isRead ? 'read' : 'unread'));
         tr.appendChild(addData(document.createElement('div'), "\uD83D\uDDD1", 'delete-btn'));
 
         table.appendChild(tr);
@@ -33,9 +33,10 @@ function updateTable() {
     readButtons.forEach(btn => btn.addEventListener('click', toggleRead));
 }
 
-function addData(element, text = '', className = '') {
+function addData(element, text = '', className = '', className2 = '') {
     const td = document.createElement('td');
     if (className) element.classList.add(className);
+    if (className2) element.classList.add(className2);
     if (text) element.textContent = text;
     td.appendChild(element);
     return td;
@@ -85,3 +86,8 @@ addButton.addEventListener('click', showModal);
 okButton.addEventListener('click', createNewEntry);
 cancelButton.addEventListener('click', clearModal);
 
+//Default Data
+
+addBookToLibrary(' In Search of Lost Time','Marcel Proust', true);
+addBookToLibrary('Pride and Prejudice', 'Jane Austen', false);
+updateTable();
