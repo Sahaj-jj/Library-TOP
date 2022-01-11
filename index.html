@@ -14,11 +14,16 @@
         </div>
         <div class="add-button">+</div>
         <table>
-            <tr>
-                <th>Name</th>
-                <th>Author</th>
-                <th>Status</th>
-            </tr>   
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Author</td>
+                    <td>Read</td>
+                    <td></td>
+                </tr>  
+            </thead> 
+            <tbody>
+            </tbody>
         </table>
         <div class="modal-active">
             <div class="header">
@@ -27,7 +32,11 @@
             <div class="form-container">
                 <input class="input" type="text" placeholder="Title">
                 <input class="input" type="text" placeholder="Author">
-                <div class="input">Read <input class="input" type="checkbox"></div>
+                <div>Read <input class="input" type="checkbox"></div>
+                <div>
+                    <button class='cancel-btn'>Cancel</button>
+                    <button class='ok-btn'>OK</button>
+                </div>
             </div>
         </div>
     </div>

@@ -1,33 +1,36 @@
-let myLibrary = [];
-const table = document.querySelector('table tbody');
-const modal = document.querySelector('.modal-active');
-const addButton = document.querySelector('.add-button');
-
 function Book(name, author, isRead) {
     this.name = name;
     this.author = author;
     this.isRead = isRead;
 }
 
-function addBookToLibrary() {
+function addBookToLibrary(name, author, isRead) {
     let newBook = new Book();
-    newBook.name = 'l';
-    newBook.author = 'm'
-    newBook.isRead = true;
+    newBook.name = name;
+    newBook.author = author
+    newBook.isRead = isRead;
     myLibrary.push(newBook);
 }
 
 function updateTable() {
+    table.innerHTML = '';
+    let i = 0;
+
     myLibrary.forEach(book => {
         const tr = document.createElement('tr');
-
+        tr.classList.add(`${i++}`);
+        
         tr.appendChild(addData(document.createElement('div'), book.name));
         tr.appendChild(addData(document.createElement('div'), book.author));
-        tr.appendChild(addData(document.createElement('div'), book.isRead ? 'Read' : 'Not read'));
-        tr.appendChild(addData(document.createElement('button'), 'Delete', 'delete-button'));
+        tr.appendChild(addData(document.createElement('div'), book.isRead ? "\uD83D\uDDF8" : "\u2716", 'read-btn'));
+        tr.appendChild(addData(document.createElement('div'), "\uD83D\uDDD1", 'delete-btn'));
 
         table.appendChild(tr);
     })
+    deleteButtons = document.querySelectorAll('.delete-btn');
+    deleteButtons.forEach(btn => btn.addEventListener('click', deleteEntry));
+    readButtons = document.querySelectorAll('.read-btn');
+    readButtons.forEach(btn => btn.addEventListener('click', toggleRead));
 }
 
 function addData(element, text = '', className = '') {
@@ -38,14 +41,47 @@ function addData(element, text = '', className = '') {
     return td;
 }
 
-function createNewEntry() {
-    modal.style.display = 'block';
-    setTimeout(() => modal.classList.add('active'), 0)
-    
+function showModal() {
+    modal.classList.add('active');
 }
 
-addBookToLibrary();
-updateTable();
+function clearModal() {
+    modal.classList.remove('active');
+    newBookInputs[0].value = '';
+    newBookInputs[1].value = '';
+    newBookInputs[2].checked = false;
+}
 
-addButton.addEventListener('click', createNewEntry);
+function createNewEntry() {
+    addBookToLibrary(newBookInputs[0].value, newBookInputs[1].value, newBookInputs[2].checked);
+    updateTable();
+    clearModal();
+}
+
+function deleteEntry() {
+    let index = (this.parentNode.parentNode.classList.value);
+    myLibrary.splice(index, 1);
+    updateTable();
+}
+
+function toggleRead() {
+    let index = (this.parentNode.parentNode.classList.value);
+    myLibrary[index].isRead = !myLibrary[index].isRead;
+    updateTable();
+}
+
+let myLibrary = []
+
+let table = document.querySelector('tbody');
+const modal = document.querySelector('.modal-active');
+const addButton = document.querySelector('.add-button');
+const cancelButton = document.querySelector('.cancel-btn');
+const okButton = document.querySelector('.ok-btn');
+const newBookInputs = document.querySelectorAll('.input');
+let deleteButtons = document.querySelectorAll('.delete-btn');
+let readButtons = document.querySelectorAll('.read-btn');
+
+addButton.addEventListener('click', showModal);
+okButton.addEventListener('click', createNewEntry);
+cancelButton.addEventListener('click', clearModal);
 
