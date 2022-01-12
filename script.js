@@ -76,6 +76,7 @@ function deleteEntry() {
     setTimeout(() => {
         updateTable();
         this.parentNode.parentNode.classList.remove('delete');
+        this.parentNode.parentNode.remove();
     }, 300);
 }
 
