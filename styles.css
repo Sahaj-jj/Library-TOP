@@ -1,16 +1,18 @@
 body {
     margin: 0;
     background-color: rgb(31, 31, 31);
+    overflow-x: hidden;
 }
 
 .main {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Lato', sans-serif;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
 }
 
 .hero {
+    width: 100%;
     padding: 50px;
     color: white;
     text-shadow: 0px 0px 3px white;
@@ -23,22 +25,21 @@ body {
 .add-button {
     height: 60px;
     width: 60px;
-    left: 50%;
-    margin-left: -30px;
-    margin-top: 130px;
+    margin-top: -30px;
     border-radius: 100px;
     z-index: 1;
-    position: fixed;
+    position: relative;
     background-color: white;
     border-width: 5px;
     background-color: rgb(68, 68, 68);
     text-align: center;
     font-size: 40px;
-    font-weight: 1000;
+    font-weight: 800;
     color: rgb(178, 207, 231);
     box-shadow: 0 5px 10px black;
     text-shadow: 0 0 1px white;
     cursor: pointer;
+    transition: transform 0.3s;
     background-image: linear-gradient(45deg, rgb(0, 97, 177), rgb(32, 179, 130));
 
 }
@@ -57,6 +58,7 @@ table {
 tr {
     border-bottom: solid thin rgba(255, 255, 255, 0.2);
     text-align: center;
+    transition: transform 0.5s;
 }
 
 thead tr {
@@ -71,45 +73,149 @@ td {
   
 .modal-active {
     display: none;
-    background-color: aquamarine;
+    background-color: rgb(20, 20, 20);
     z-index: 1;
     position: fixed;
+    padding: 30px 30px 10px;
     top: 30%;
     left: 50%;
-    transform: scale(1%);
+    margin-left: -150px;
     transition: all 0.5s;
+    color: white;
+    border-radius: 15px;
+    transform: scale(1%);
+    opacity: 0;
+    box-shadow: 3px 10px 10px black;
 }
-
 .active {
-    display: block;
+    opacity: 1;
     transform: scale(100%);
 }
 
+.modal-active .heading {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 100;
+}
+
+
+
 .form-container {
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 25px;
     align-items: center;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.input {
+    border: none;
+    border-radius: 10px;
+    width: 200px;
+    height: 30px;
+    background-color: rgb(49, 49, 49);
+    padding: 5px 15px;
+    color: white;
+}
+
+.checkbox {
+    vertical-align: middle;
+    border: none;
+}
+
+.btns {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ok-btn, .cancel-btn {
+    width: 80px;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: rgb(0, 97, 177);
+    color: white;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background-color: rgba(112, 112, 112, 0.315);
+}
+
+.cancel-btn:hover {
+    background-color: rgba(71, 71, 71, 0.315);
+}
+
+.ok-btn:hover{
+    background-color: rgb(0, 75, 136);
 }
 
 .delete-btn, .read-btn {
     border: 3px solid rgba(255, 0, 0, 0.61);
-    width: 45px;
-    height: 36px;
+    width: 50px;
+    height: 43px;
     margin: 0 auto;
     border-radius: 15px;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 0, 0, 0.61);
     font-size: 24px;
     cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.3s;
+}
+
+.delete-btn {
+    border: 3px solid rgba(112, 112, 112, 0.315);
+    color: rgba(112, 112, 112, 0.315);
 }
 
 .read-btn.read {
-    color: rgba(172, 255, 47, 0.795);
-    border-color: rgba(172, 255, 47, 0.795);
+    color: rgba(172, 255, 47, 0.466);
+    border-color: rgba(172, 255, 47, 0.466);
     font-size: 28px;
 }
 
-.read-btn.unread {
-    color: rgba(255, 0, 0, 0.61);
+.add-button:hover, .fab.fa-github:hover {
+    transform: scale(1.2);
+}
+
+.delete-btn:hover, .read-btn:hover {
+    background-color: rgba(255, 0, 0, 0.61);
+    color: white;
+    border: 3px solid rgba(0,0,0,0);
+}
+
+.read-btn.read:hover {
+    background-color:rgba(172, 255, 47, 0.466);
+}
+
+tr.delete {
+    transform: translateX(1000px);
+    border-bottom: transparent;
+}
+
+tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+footer {
+    padding: 8px 30px 8px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 0;
+    background-color: rgb(20, 20, 20);
+    color: grey;
+    font-size: 12px;
+    border-radius: 15px 15px 0 0;
+}
+
+.fab.fa-github {
+    margin-left: 8px;
+    vertical-align: middle;
+    color: grey;
+    font-size: 24px;
+    transition: all 0.3s;
 }

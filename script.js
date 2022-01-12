@@ -18,7 +18,7 @@ function updateTable() {
 
     myLibrary.forEach(book => {
         const tr = document.createElement('tr');
-        tr.classList.add(`${i++}`);
+        tr.classList.add(`id-${i++}`);
         
         tr.appendChild(addData(document.createElement('div'), book.name));
         tr.appendChild(addData(document.createElement('div'), book.author));
@@ -43,11 +43,17 @@ function addData(element, text = '', className = '', className2 = '') {
 }
 
 function showModal() {
-    modal.classList.add('active');
+    modal.style.display = 'block';
+    setTimeout(() => {
+        modal.classList.add('active');
+    }, 0);
 }
 
 function clearModal() {
     modal.classList.remove('active');
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 500);
     newBookInputs[0].value = '';
     newBookInputs[1].value = '';
     newBookInputs[2].checked = false;
@@ -61,13 +67,17 @@ function createNewEntry() {
 
 function deleteEntry() {
     let index = (this.parentNode.parentNode.classList.value);
-    myLibrary.splice(index, 1);
-    updateTable();
+    myLibrary.splice(index.slice(-1), 1);
+    this.parentNode.parentNode.classList.add('delete');
+    setTimeout(() => {
+        updateTable();
+        this.parentNode.parentNode.classList.remove('delete');
+    }, 300);
 }
 
 function toggleRead() {
     let index = (this.parentNode.parentNode.classList.value);
-    myLibrary[index].isRead = !myLibrary[index].isRead;
+    myLibrary[index.slice(-1)].isRead = !myLibrary[index.slice(-1)].isRead;
     updateTable();
 }
 
@@ -78,7 +88,7 @@ const modal = document.querySelector('.modal-active');
 const addButton = document.querySelector('.add-button');
 const cancelButton = document.querySelector('.cancel-btn');
 const okButton = document.querySelector('.ok-btn');
-const newBookInputs = document.querySelectorAll('.input');
+const newBookInputs = document.querySelectorAll('input');
 let deleteButtons = document.querySelectorAll('.delete-btn');
 let readButtons = document.querySelectorAll('.read-btn');
 
@@ -89,5 +99,6 @@ cancelButton.addEventListener('click', clearModal);
 //Default Data
 
 addBookToLibrary(' In Search of Lost Time','Marcel Proust', true);
-addBookToLibrary('Pride and Prejudice', 'Jane Austen', false);
+addBookToLibrary('Pride and Prejudice', 'Jane Austen', true);
+addBookToLibrary("Alice's Adventures in Wonderland", "Lewis Carroll", false);
 updateTable();
