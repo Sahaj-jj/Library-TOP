@@ -16,6 +16,10 @@ function updateTable() {
     table.innerHTML = '';
     let i = 0;
 
+    if (myLibrary.length == 0) {
+        table.appendChild(addData(document.createElement('div'), 'Nothing to see here :('))
+    }
+
     myLibrary.forEach(book => {
         const tr = document.createElement('tr');
         tr.classList.add(`id-${i++}`);
